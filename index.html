@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Voting</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .button { margin: 10px; padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+        .button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Vote for Your Favorite Option</h1>
+    <button class="button" onclick="vote('Option 1')">Option 1</button>
+    <button class="button" onclick="vote('Option 2')">Option 2</button>
+    <p id="result"></p>
+    <script>
+        function vote(option) {
+            fetch(`https://your-backend-url/vote?option=${option}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('result').innerText = data;
+                })
+                .catch(error => {
+                    document.getElementById('result').innerText = "Error: Unable to submit vote.";
+                });
+        }
+    </script>
+</body>
+</html>
